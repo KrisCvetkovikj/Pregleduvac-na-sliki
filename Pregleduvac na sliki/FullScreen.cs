@@ -1,87 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pregleduvac_na_sliki
 {
-    public partial class FullScreen : Form
+    public class FullScreen
     {
-        List<string> imgList;
-        int currImage = 0;
 
-        public FullScreen(List<string> imgList, int currImage)
+        private FormWindowState winState;
+        private FormBorderStyle brdStyle;
+        private bool topMost;
+        private Rectangle bounds;
+
+        /// <summary>
+        /// Constructor for FullScreen.
+        /// </summary>
+        public FullScreen()
         {
-            InitializeComponent();
-            this.Visible = false;
-            this.DoubleBuffered = true;
-            this.imgList = imgList;
-            this.currImage = currImage;
-            fullPreview(this.imgList, this.currImage);
+            IsFullScreen = false;
         }
 
-        private void fullPreview(List<string> imgList, int currImage)
+        public bool IsFullScreen
         {
-            try
-            {
-                this.Bounds = Screen.PrimaryScreen.Bounds;
-                this.pictureBox1.Bounds = Screen.PrimaryScreen.Bounds;
-                this.Visible = true;
-                this.Opacity = 0.0;
-                TimerStart();
-                this.pictureBox1.Image = new Bitmap(this.imgList[this.currImage]);
-            }
-            catch (ArgumentNullException ane)
-            {
-                MessageBox.Show("Отвори слика од диск!" + " Грешка " + ane.Message);
-            }
+            get;
+            set;
         }
 
-        private void TimerStart()
+        /// <summary>
+        /// Maximize the window to the full screen.
+        /// </summary>
+        /// <param name="targetForm"></param>
+        public void EnterFullScreen(Form targetForm)
         {
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = 20;
-            timer1.Start();
-        }
+            if (!IsFullScreen)
+            {
+                // Save the original form state.
+                Save(targetForm);
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (this.Opacity < 1.0)
-            {
-                this.Opacity += 0.02;
-            }
-            else
-            {
-                timer1.Stop();
+                targetForm.WindowState = FormWindowState.Maximized;
+                targetForm.FormBorderStyle = FormBorderStyle.None;
+                targetForm.TopMost = true;
+                targetForm.Bounds = Screen.GetBounds(targetForm);
+
+                IsFullScreen = true;
             }
         }
 
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        /// <summary>
+        /// Save the current Window state.
+        /// </summary>
+        /// <param name="targetForm"></param>
+        private void Save(Form targetForm)
         {
-            this.pictureBox1.Dispose();
-            this.Dispose();
-            this.Close();
+            winState = targetForm.WindowState;
+            brdStyle = targetForm.FormBorderStyle;
+            topMost = targetForm.TopMost;
+            bounds = targetForm.Bounds;
         }
 
-        private void FullScreen_KeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// Leave the full screen mode and restore the original window state.
+        /// </summary>
+        /// <param name="targetForm"></param>
+        public void LeaveFullScreen(Form targetForm)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (IsFullScreen)
             {
-                pictureBox1_DoubleClick(null, null);
-            }
-            if (e.KeyCode == Keys.Left)
-            {
-                this.pictureBox1.Image = Image.FromFile(imgList[--currImage]);
-            }
-            if (e.KeyCode == Keys.Right)
-            {
-                this.pictureBox1.ImageLocation = imgList[++currImage];
+                // Restore the original Window state.
+                targetForm.WindowState = winState;
+                targetForm.FormBorderStyle = brdStyle;
+                targetForm.TopMost = topMost;
+                targetForm.Bounds = bounds;
+                IsFullScreen = false;
             }
         }
     }

@@ -49,10 +49,14 @@
             this.stretchedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slideshowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.rotateLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotateRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rotateLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -68,6 +72,8 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
@@ -119,16 +125,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(290, 409);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.Size = new System.Drawing.Size(12, 13);
             this.label1.TabIndex = 4;
+            this.label1.Text = "/";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(195, 409);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.Size = new System.Drawing.Size(12, 13);
             this.label2.TabIndex = 5;
+            this.label2.Text = "/";
             // 
             // contextMenuStrip1
             // 
@@ -138,11 +146,13 @@
             this.nextImageToolStripMenuItem,
             this.toolStripSeparator1,
             this.setAsDesktopBackgroundToolStripMenuItem,
+            this.slideshowToolStripMenuItem,
+            this.toolStripSeparator2,
             this.saveAsToolStripMenuItem,
-            this.rotateLeftToolStripMenuItem,
-            this.rotateRightToolStripMenuItem});
+            this.rotateRightToolStripMenuItem,
+            this.rotateLeftToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(218, 186);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(218, 192);
             // 
             // openToolStripMenuItem
             // 
@@ -217,6 +227,18 @@
             this.fillToolStripMenuItem.Text = "Fill";
             this.fillToolStripMenuItem.Click += new System.EventHandler(this.fillToolStripMenuItem_Click);
             // 
+            // slideshowToolStripMenuItem
+            // 
+            this.slideshowToolStripMenuItem.Name = "slideshowToolStripMenuItem";
+            this.slideshowToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.slideshowToolStripMenuItem.Text = "Slideshow";
+            this.slideshowToolStripMenuItem.Click += new System.EventHandler(this.slideshowToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(214, 6);
+            // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
@@ -224,19 +246,19 @@
             this.saveAsToolStripMenuItem.Text = "Save as...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
-            // rotateLeftToolStripMenuItem
-            // 
-            this.rotateLeftToolStripMenuItem.Name = "rotateLeftToolStripMenuItem";
-            this.rotateLeftToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.rotateLeftToolStripMenuItem.Text = "Rotate Left";
-            this.rotateLeftToolStripMenuItem.Click += new System.EventHandler(this.rotateLeftToolStripMenuItem_Click);
-            // 
             // rotateRightToolStripMenuItem
             // 
             this.rotateRightToolStripMenuItem.Name = "rotateRightToolStripMenuItem";
             this.rotateRightToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.rotateRightToolStripMenuItem.Text = "Rotate Right";
             this.rotateRightToolStripMenuItem.Click += new System.EventHandler(this.rotateRightToolStripMenuItem_Click);
+            // 
+            // rotateLeftToolStripMenuItem
+            // 
+            this.rotateLeftToolStripMenuItem.Name = "rotateLeftToolStripMenuItem";
+            this.rotateLeftToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.rotateLeftToolStripMenuItem.Text = "Rotate Left";
+            this.rotateLeftToolStripMenuItem.Click += new System.EventHandler(this.rotateLeftToolStripMenuItem_Click);
             // 
             // Slika
             // 
@@ -289,5 +311,9 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem rotateLeftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rotateRightToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem slideshowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Timer timer2;
     }
 }

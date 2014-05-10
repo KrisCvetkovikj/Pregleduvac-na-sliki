@@ -120,7 +120,7 @@ namespace Pregleduvac_na_sliki
                 }
             }
 
-            // Set the desktop wallpapaer by calling the Win32 API SystemParametersInfo 
+            // Set the desktop wallpaper by calling the Win32 API SystemParametersInfo 
             // with the SPI_SETDESKWALLPAPER desktop parameter. The changes should 
             // persist, and also be immediately visible.
             if (!SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE))
