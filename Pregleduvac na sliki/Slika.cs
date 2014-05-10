@@ -38,10 +38,10 @@ namespace Pregleduvac_na_sliki
             label1.Text = "/";
             // Used to set starting directory to Desktop when opening dialog
             openFileDialog1.InitialDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            openFileDialog1.Filter = "Слики (*.JPG;*.BMP;*.GIF,*.PNG)| *.JPG;*.BMP;*.GIF;*.PNG|Сите датотеки (*.*)|*.*";
+            openFileDialog1.Filter = "Images (*.JPG;*.BMP;*.GIF,*.PNG)| *.JPG;*.BMP;*.GIF;*.PNG|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
-            openFileDialog1.Title = "Одбери слика...";
+            openFileDialog1.Title = "Choose an image...";
             // Allows dropping files on Form
             this.pictureBox1.AllowDrop = true;
             this.toolTip1.SetToolTip(this.pictureBox1, "Right click for more options.");
@@ -113,7 +113,7 @@ namespace Pregleduvac_na_sliki
             }
             else
             {
-                MessageBox.Show("Отвори слика!");
+                MessageBox.Show("Open an image!");
             }
         }
 
@@ -133,7 +133,7 @@ namespace Pregleduvac_na_sliki
             }
             else
             {
-                MessageBox.Show("Отвори слика!");
+                MessageBox.Show("Open an image!");
             }
         }
 
@@ -151,7 +151,7 @@ namespace Pregleduvac_na_sliki
                 picImage = new Bitmap(fileNames[pCurrentImage]);
                 pictureBox1.Image = picImage;
                 label1.Text = fileNames[pCurrentImage] + " (" + picImage.Width + "x" + picImage.Height + ")";
-                label2.Text = " Вкупно слики:" + fileNames.Count.ToString();
+                label2.Text = " Image n°:" + fileNames.Count.ToString();
             }
             catch (ArgumentOutOfRangeException aor)
             {

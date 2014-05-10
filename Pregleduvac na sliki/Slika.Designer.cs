@@ -276,7 +276,7 @@
             this.MaximizeBox = false;
             this.Name = "Slika";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Прегледувач на слики";
+            this.Text = "Прегледувач на слики / Image Viewer";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Slika_KeyDown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
